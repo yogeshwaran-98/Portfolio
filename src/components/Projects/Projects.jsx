@@ -84,7 +84,8 @@ export const Projects = () => {
               href={projectType[0].url}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              className="absolute inset-0 flex items-center justify-center mt-96 md:mt-0  transition-opacity duration-300 
+                opacity-100 md:opacity-0 md:group-hover:opacity-100"
             >
               <button className="bg-white text-black px-6 py-3 rounded-lg font-bold">
                 {projectType[0].action}
@@ -112,13 +113,14 @@ export const Projects = () => {
                 </div>
 
                 <a
-                  href={projectType[1].url}
+                  href={projectType[2].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute inset-0 flex items-center justify-center mt-48 md:mt-0  transition-opacity duration-300 
+                opacity-100 md:opacity-0 md:group-hover:opacity-100"
                 >
                   <button className="bg-white text-black px-6 py-3 rounded-lg font-bold">
-                    {projectType[1].action}
+                    {projectType[2].action}
                   </button>
                 </a>
               </div>
@@ -144,7 +146,8 @@ export const Projects = () => {
                   href={projectType[2].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute inset-0 flex items-center justify-center mt-48 md:mt-0 transition-opacity duration-300 
+                opacity-100 md:opacity-0 md:group-hover:opacity-100"
                 >
                   <button className="bg-white text-black px-6 py-3 rounded-lg font-bold">
                     {projectType[2].action}
