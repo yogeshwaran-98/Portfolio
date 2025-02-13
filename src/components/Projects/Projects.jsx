@@ -113,14 +113,14 @@ export const Projects = () => {
                 </div>
 
                 <a
-                  href={projectType[2].url}
+                  href={projectType[1].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center mt-48 md:mt-0  transition-opacity duration-300 
+                  className="absolute inset-0 flex items-center justify-center mt-40 md:mt-0  transition-opacity duration-300 
                 opacity-100 md:opacity-0 md:group-hover:opacity-100"
                 >
                   <button className="bg-white text-black px-6 py-3 rounded-lg font-bold">
-                    {projectType[2].action}
+                    {projectType[1].action}
                   </button>
                 </a>
               </div>
