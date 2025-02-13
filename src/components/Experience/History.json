@@ -1,0 +1,41 @@
+[
+  {
+    "role": "Web Development Intern",
+    "color": "#FFC876",
+    "organisation": "AlignOps Pvt Ltd",
+    "startDate": "Dec, 2023",
+    "endDate": "May, 2024",
+    "experiences": [
+      "Built web apps using MERN stack.",
+      "Contributed to Agile processes."
+    ],
+    "imageSrc": "history/alignops.png"
+  },
+
+  {
+    "role": "Advanced Certification in DevOps and Cloud Computing",
+    "color": "#AC6AFF",
+    "organisation": "Intellipaat",
+    "startDate": "Mar, 2023",
+    "endDate": "Oct, 2023",
+    "experiences": [
+      "Gained hands-on experience with DevOps tools and cloud platforms.",
+      "Worked on automation and cloud infrastructure projects."
+    ],
+    "imageSrc": "history/intellipaat.png"
+  },
+
+  {
+    "role": "Senior Analyst",
+    "color": "#FF776F",
+    "organisation": "Flex",
+    "startDate": "Jun, 2021",
+    "endDate": "Oct, 2022",
+    "experiences": [
+      "Managed 1,500+ open orders for on-time deliveries.",
+
+      "Recognized for excellence with multiple Pat on the Back awards and nominated for Employee of the Quarter for exceptional contributions"
+    ],
+    "imageSrc": "history/flex.png"
+  }
+]

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Converter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar {
+        background: #007bff;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        padding: 8px 12px;
+        border-radius: 5px;
+      }
+      .navbar a:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .container {
+        padding: 20px;
+      }
+      .section {
+        display: none;
+      }
+      .download-link {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        background: green;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <div class="navbar">
+      <a href="#image">Image</a>
+      <a href="#pdf">PDF</a>
+      <a href="#audio">Audio</a>
+      <a href="#video">Video</a>
+      <a href="#text">Text</a>
+      <a href="#compress">Compress</a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div id="image" class="section">
+        <h2>Image Converter</h2>
+        <input type="file" id="imageInput" accept="image/*" />
+        <select id="imageFormat">
+          <option value="image/png">PNG</option>
+          <option value="image/jpeg">JPG</option>
+          <option value="image/webp">WebP</option>
+        </select>
+        <button onclick="convertImage()">Convert</button>
+        <a id="imageDownload" class="download-link">Download</a>
+        <canvas id="canvas" style="display: none"></canvas>
+      </div>
+
+      <div id="pdf" class="section">
+        <h2>PDF Converter</h2>
+        <input type="file" id="pdfInput" accept=".pdf" />
+        <button onclick="extractTextFromPDF()">Extract Text</button>
+        <p id="pdfOutput"></p>
+      </div>
+
+      <div id="audio" class="section">
+        <h2>Audio Converter</h2>
+        <input type="file" id="audioInput" accept="audio/*" />
+        <button onclick="convertAudio()">Convert to WAV</button>
+        <a id="audioDownload" class="download-link">Download</a>
+      </div>
+
+      <div id="video" class="section">
+        <h2>Video Converter</h2>
+        <input type="file" id="videoInput" accept="video/*" />
+        <button onclick="convertVideo()">Convert to WebM</button>
+        <a id="videoDownload" class="download-link">Download</a>
+      </div>
+
+      <div id="text" class="section">
+        <h2>Text Converter</h2>
+        <textarea id="textInput" rows="4" cols="40"></textarea>
+        <button onclick="convertToBase64()">Convert to Base64</button>
+        <button onclick="convertFromBase64()">Decode Base64</button>
+        <p id="textOutput"></p>
+      </div>
+
+      <div id="compress" class="section">
+        <h2>File Compressor</h2>
+        <input type="file" id="compressInput" multiple />
+        <button onclick="compressFiles()">Compress to ZIP</button>
+        <a id="zipDownload" class="download-link">Download</a>
+      </div>
+    </div>
+
+    <script>
+      function showSection() {
+        let hash = window.location.hash.substring(1);
+        let sections = document.querySelectorAll(".section");
+        sections.forEach((section) => (section.style.display = "none"));
+        if (hash) document.getElementById(hash).style.display = "block";
+        else document.getElementById("image").style.display = "block";
+      }
+
+      window.addEventListener("hashchange", showSection);
+      window.addEventListener("load", showSection);
+
+      function convertImage() {
+        let file = document.getElementById("imageInput").files[0];
+        if (!file) return alert("Select an image first!");
+        let format = document.getElementById("imageFormat").value;
+
+        let img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = function () {
+          let canvas = document.getElementById("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          let ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob((blob) => {
+            let url = URL.createObjectURL(blob);
+            let link = document.getElementById("imageDownload");
+            link.href = url;
+            link.download = `converted.${format.split("/")[1]}`;
+            link.style.display = "block";
+          }, format);
+        };
+      }
+
+      async function extractTextFromPDF() {
+        let file = document.getElementById("pdfInput").files[0];
+        if (!file) return alert("Select a PDF file!");
+
+        let reader = new FileReader();
+        reader.onload = function () {
+          let typedarray = new Uint8Array(this.result);
+          pdfjsLib.getDocument(typedarray).promise.then((pdf) => {
+            pdf.getPage(1).then((page) => {
+              page.getTextContent().then((text) => {
+                let extractedText = text.items
+                  .map((item) => item.str)
+                  .join(" ");
+                document.getElementById("pdfOutput").innerText = extractedText;
+              });
+            });
+          });
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
+      function convertAudio() {
+        alert("Browser does not support direct audio conversion.");
+      }
+
+      function convertVideo() {
+        alert("Browser does not support direct video conversion.");
+      }
+
+      function convertToBase64() {
+        let text = document.getElementById("textInput").value;
+        document.getElementById("textOutput").innerText = btoa(text);
+      }
+
+      function convertFromBase64() {
+        let text = document.getElementById("textInput").value;
+        try {
+          document.getElementById("textOutput").innerText = atob(text);
+        } catch (e) {
+          alert("Invalid Base64 text!");
+        }
+      }
+
+      function compressFiles() {
+        alert("Browser does not support file compression.");
+      }
+    </script>
+
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  </body>
+</html>
