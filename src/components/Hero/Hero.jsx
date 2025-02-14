@@ -40,7 +40,7 @@ const Hero = () => {
             Versatile MERN stack developer and DevOps enthusiast, skilled in
             building scalable apps and optimizing cloud workflows.
           </p>
-          <Button href="https://drive.google.com/uc?export=download&id=1kEvNsXcwkUg-Jg40QmKHJ4-OThtQLXim">
+          <Button href="https://drive.google.com/uc?export=download&id=1o-gb-o91cAEC6iP3rMuWajmWSkvk-OJE">
             Download Resume
           </Button>
         </div>
