@@ -99,7 +99,7 @@ export const socials = [
     id: "0",
     title: "Mail",
     iconUrl: Mail,
-    url: "mryogeshwaran1998@gmail.com",
+    url: "yogeshwaran.career@gmail.com",
   },
   {
     id: "1",
